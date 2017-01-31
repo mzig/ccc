@@ -52,6 +52,22 @@ class Galeria(models.Model):
 
 
 
+class Imagen(models.Model):
+    imagen = models.FileField(upload_to='./static/img/galerias')
+    texto = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.imagen
+
+    class Meta:
+        ordering = ['imagen']
+        verbose_name = 'Imagen'
+        verbose_name_plural = 'Imágenes'
+
+
+
+
+
 
 
 
