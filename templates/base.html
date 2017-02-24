@@ -1,0 +1,182 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCC - Base</title>
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+  </head>
+  <body class="ccc">
+
+    <div class="overnav">
+      <div class="left">
+        <span><strong>Horario:</strong> Martes a Domingo 10:00 a 18:00 hrs.</span>
+      </div>
+      <div class="right">
+        <span>Buscar: ________________</span>
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-youtube"></i>
+      </div>
+    </div>
+    
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+      <div class="title-bar-title">Menu</div>
+    </div>
+    
+    <div class="top-bar" id="main-menu">
+    <div class="top-bar-left">
+      <a href="" class="logo">
+        <img src="{% static "img/sys/ccc-logo.png" %}" alt="Centro Cultural Clavijero">
+      </a>
+    </div>
+    <div class="top-bar-right">
+    
+    <ul class="dropdown menu" data-dropdown-menu>
+    <li class="has-dropdown">
+         <a href="#"> Acerca del museo                           </a>
+    <ul class="menu vertical">
+    <li> <a href="#">   Historia del Palacio Clavijero           </a> </li>
+    <li> <a href="#">   Historia del Centro Cultural Clavijero   </a> </li>
+    <li> <a href="#">   Misión y Visión                          </a> </li>
+    <li> <a href="#">   Espacios que componen el edificio        </a> </li>
+    <li> <a href="#">   Planos del edificio Clavijero            </a> </li>
+    </ul>
+    </li>
+    
+    <li class="has-dropdown">
+         <a href="#"> Visita                                     </a>
+    <ul class="menu vertical">
+    <li> <a href="#">   Información al visitante                 </a> </li>
+    <li> <a href="#">   Horarios                                 </a> </li>
+    <li> <a href="#">   Mapas                                    </a> </li>
+    <li> <a href="#">   Dirección                                </a> </li>
+    <li> <a href="#">   Visitas guiadas                          </a> </li>
+    <li> <a href="#">   Servicio Social                          </a> </li>
+    </ul>
+    </li>
+    
+    <li class="has-dropdown">
+         <a href="#"> Exposiciones                               </a>
+    <ul class="menu vertical">
+    <li> <a href="#">   Exhibiciones vigentes                    </a> </li>
+    <li> <a href="#">   Exhibiciones pasadas                     </a> </li>
+    </ul>
+    </li>
+    
+    <li class="has-dropdown">
+         <a href="#"> Actividades                                </a>
+    <ul class="menu vertical">
+    <li> <a href="#">   Educación                                </a> </li>
+    <li> <a href="#">   Actividades especializadas               </a> </li>
+    <li> <a href="#">   Actividades generales                    </a> </li>
+    <li> <a href="#">	   Proyecciones Films                      </a> </li>
+    <li> <a href="#">	   Master Class                            </a> </li>
+    <li> <a href="#">   Conciertos                               </a> </li>
+    </ul>
+    </li>
+    
+    <li>
+         <a href="#"> Contacto                                   </a>
+    <ul class="menu vertical">
+    <li> <a href="#">   Directorio                               </a> </li>
+    <li> <a href="#">   Información de contacto                  </a> </li>
+    </ul>
+    </li>
+    </ul>
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+      
+      <header class="hero row expanded">
+        <div class="medium-12 columns">
+          <h1 class="title">Lorem 1</h1>
+          <h2 class="sub-title">Lorem 2</h2>
+          <p class="text-line">Quis expedita asperiores assumenda. | <span>Sala 1</span></p>
+        </div>
+      </header>
+      
+    
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Exposiciones</h1>
+        <ul>
+        {% for expo in expo_list %}
+            <li>{{ expo.expo }} - {{ expo.autor }}
+    </li>
+        {% empty %}
+            <li>No articles yet.</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    
+    
+    
+    <footer>
+      <div class="row">
+        <div class="medium-4 columns text-center">
+          <a href="" class="logo">
+            <img src="{% static "img/sys/ccc-logo-vert-white.png" %}" alt="CCC">
+          </a>
+          <br>
+          <div class="input-group">
+            <span class="input-group-label">@</span>
+            <input class="input-group-field" type="text" placeholder="Inscríbete al newslatter ">
+            <div class="input-group-button">
+              <input type="submit" class="button" value="Enviar">
+            </div>
+          </div>
+          <!-- <span>Adipisicing elit. Hic soluta accusamus deleniti.</span> <button class="button">Enviar</button> -->
+        </div>
+        <div class="medium-4 columns">
+          <h5>Ubicación</h5>
+          <br>
+          <p>
+            Nigromante 79, Centro Histórico
+            <br>
+            CP 58000, Morelia, Michoacán, México
+            <i class="fa fa-phone"></i> +52 01 443 312 04 12
+          </p>
+          <ul class="menu">
+            <li><a href=""><i class="fa fa-2x fa-facebook"></i></a></li>
+            <li><a href=""><i class="fa fa-2x fa-twitter"></i></a></li>
+            <li><a href=""><i class="fa fa-2x fa-instagram"></i></a></li>
+            <li><a href=""><i class="fa fa-2x fa-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="medium-4 columns">
+          <h5>Mapa</h5>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quo quam, quae nihil dolorem voluptatum neque dolor velit sunt! Ab error odit quos, minus consectetur?
+          </p>
+        </div>
+    
+        <div class="medium-12 columns">
+          <hr>
+          <ul class="menu text-center">
+            <li> <a href="#"> <small>Aviso legal</small> </a></li>
+            <li> <a href="#"> <small>Política de cookies</small> </a></li>
+            <li> <a href="#"> <small>créditos</small> </a></li>
+            <li> <a href="#"> <small><i class="fa fa-copyright"></i> Copyright 2017 CCC Todos los derechos reservados.</small> </a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    
+    
+
+    <script src="{% static "js/app.js" %}"></script>
+  </body>
+</html>
