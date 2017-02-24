@@ -16,7 +16,25 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+# static for debug mode
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles import views
+
+
+# from nucleo.views import HomePageView
+from django.views.generic.base import TemplateView
+from nucleo import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
     # url(r'^admin/', admin.site.urls),
+    url(r'^$', views.HomeView.as_view(), name='home'),
+    url(r'^expos/$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='expo'),
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,7 +14,7 @@ class Expo(models.Model):
     fechaInaugura = models.DateField()
     fechaClausura = models.DateField()
     textoCur = models.TextField(max_length=1500)
-    imagen = models.FileField(blank=True, upload_to='license')
+    imagen = models.FileField(blank=True, upload_to='static')
     lugar = models.ForeignKey(Lugar, null=True)
     # sala = models.CharField(max_length=20, blank=True, choices=(('SALA1', 'Sala 1'), ('SALA2', 'Sala 2'), ('SALA3', 'Sala 3'), ('SALA4', 'Sala 4'), ('SALA5', 'Sala 5'), ('SALA6', 'Sala 6'), ('SALA7', 'Sala 7'), ('SALA8', 'Sala 8'), ('SALA9', 'Sala 9')))
     tags = models.ManyToManyField(Tag, related_name='expo_tags', blank=True)
