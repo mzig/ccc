@@ -1,0 +1,58 @@
+{% extends "full.html" %}
+{% load static %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url('//andamiostudio.in/staticcc/sys/hero/hero-expos.jpg');">
+            <div class="medium-12 columns text-center">
+              <h2 class="title">Exposiciones</h2>
+              <h4 class="sub-title">actuales</h4>
+            </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+
+    <div class="row article" id="main-exposiciones">
+      <div class="medium-12 columns">
+        <section id="exposiciones">
+
+          <div class="row small-up-1 medium-up-2 large-up-2 grid-hover">
+            {% for expo in expo_list %}
+                <div class="column column-block">
+                  <a href="{{ expo.slug }}">
+                    <figure>
+                      <img src="{{ expo.imagen.url }}" class="" alt="{{ expo.titulo }}">
+                      <figcaption>
+                        <div>
+                          <h2>{{ expo.titulo }}</h2>
+                          <h3>{{ expo.subtitulo }}</h3>
+                          <div class="callout">
+                            <span> {{ expo.fecha_inicio|date:"F Y" }} - {{ expo.fecha_fin|date:"F Y" }}</span>
+                            <br>
+                            <span><strong>{{ expo.lugar }}</strong></span>
+                            <br>
+                              {% for tag in tags %}
+                            <span class="primary label">{{ tags }}</span>
+                              {% empty %}
+                              {% endfor %}
+                          </div>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </div>
+            {% empty %}
+                <p>No expositions yet.</p>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+    </div>
+{% endblock main %}
+

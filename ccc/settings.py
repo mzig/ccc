@@ -20,25 +20,36 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# with open('/var/www/ccclavijero.mx/ccc/etc/secretkey.txt') as f:
+#     SECRET_KEY = f.read().strip()
 SECRET_KEY = '9k37you!74*u&+esm%f)fifhpbgi(x^-50zae_0uvfk)k&24z@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['.ccclavijero.mx']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # django-admin-interface apps for customize admin
+    #'admin_interface',
+    #'flat_responsive',
+    #'flat', #if django version < 1.9
+    #'colorfield',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     'nucleo',
-    'eventos'
+    'eventos',
+    'embed_video',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +86,9 @@ WSGI_APPLICATION = 'ccc.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+# with open('/var/www/ccclavijero.mx/ccc/etc/mysqlpwd.txt') as f:
+#     MYSQL_PASSWORD = f.read().strip()
+MYSQL_PASSWORD = ''
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
@@ -85,7 +98,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': MYSQL_PASSWORD,
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
@@ -115,9 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -132,11 +145,34 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'static'),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticmaster'),
     # 'static',
     # '/var/www/static',
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# TINYMCE_JS_URL = 'http://debug.example.org/tiny_mce/tiny_mce_src.js'
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table, spellchecker, paste, searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'height': 510,
+}
+
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = True
+TINYMCE_EXTRA_MEDIA = {
+    'css': {
+        'all': [
+            # ...
+        ],
+    },
+    'js': [
+        # ...
+    ],
+}

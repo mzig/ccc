@@ -1,69 +1,86 @@
 from django.db import models
 from autoslug import AutoSlugField
-from nucleo.models import Tag, Lugar, Galeria, Incrustado
+from tinymce.models import HTMLField
+from nucleo.models import Tag, Lugar, Galeria, Incrustado, TipoActividad #Estadistica
+from embed_video.fields import EmbedVideoField
+from PIL import Image
 
 # Create your models here.
 
 
 # clases de eventos, expos y actividades
+class Evento(models.Model):
+    titulo = models.CharField(max_length=255, unique=True, null=True)
+    subtitulo = models.CharField(max_length=255, blank=True)
+    slug = AutoSlugField(populate_from='titulo', unique=True, null=True)
 
-class Expo(models.Model):
-    expo = models.CharField(max_length=255, blank=True, unique=True)
-    autor = models.CharField(max_length=255, blank=True)
-    slug = AutoSlugField(populate_from='expo', unique=True)
-    fechaInaugura = models.DateField()
-    fechaClausura = models.DateField()
-    textoCur = models.TextField(max_length=1500)
-    imagen = models.FileField(blank=True, upload_to='static')
-    lugar = models.ForeignKey(Lugar, null=True)
-    # sala = models.CharField(max_length=20, blank=True, choices=(('SALA1', 'Sala 1'), ('SALA2', 'Sala 2'), ('SALA3', 'Sala 3'), ('SALA4', 'Sala 4'), ('SALA5', 'Sala 5'), ('SALA6', 'Sala 6'), ('SALA7', 'Sala 7'), ('SALA8', 'Sala 8'), ('SALA9', 'Sala 9')))
+    # imagen = models.ImageField(upload_to=upload_location(params))
+
+    fecha_inicio = models.DateField(null=True)
+    fecha_fin = models.DateField(null=True)
+    desc_corta = models.TextField(max_length=350, blank=True, null=True)
+    lugar = models.ForeignKey(Lugar, blank=True, null=True)
     tags = models.ManyToManyField(Tag, related_name='expo_tags', blank=True)
-    galeria = models.ForeignKey(Galeria, null=True)
-    # incrustado (Video url, etc)
-    featured = models.BooleanField(default=False)
+    video = EmbedVideoField(blank=True)
 
     def __str__(self):
-        return self.expo
+        return self.titulo
 
     class Meta:
-        ordering = ['expo']
+        abstract = True
+        ordering = ['titulo']
+
+    # def upload_location(instance, filename):
+    #     # return "%s/%s" %(instance.slug, filename)
+    #     path = "media/" + instance.slug
+    #     format = instance.slug + instance.file_extension
+    #     return os.path.join(path, format)
+
+class Expo(Evento):
+    texto_curatorial = HTMLField(max_length=25500)
+    imagen = models.ImageField(upload_to='expos')
+    galeria = models.ForeignKey(Galeria, null=True, blank=True)
+    # incrustado (Video url, etc)
+    # estadisticas = models.ForeignKey(Estadistica, null=True, blank=True)
+    carrusel = models.BooleanField(default=False)
+
+    # def __str__(self):
+    #     return self.expo
+
+    class Meta:
+        # ordering = ['expo']
         verbose_name = 'Exposición'
         verbose_name_plural = 'Exposiciones'
 
 
 
-class Actividad(models.Model):
-    actividad = models.CharField(max_length=255, unique=True)
-    realizador = models.CharField(max_length=255, blank=True)
-    tipo = models.CharField(max_length=30, choices=(('Educación', 'EDUCACION'), ('Master Class', 'MASTER CLASS'), ('Proyección', 'PROYECCION')), default='EDUCACION')
-    inicio = models.DateField(null=True)
-    fin = models.DateField(null=True)
-    lugar = models.ForeignKey(Lugar, null=True)
-    # slug = AutoSlugField(populate_from='actividad', unique=True)
+class Actividad(Evento):
+    tipo = models.ForeignKey(TipoActividad, related_name='tipo_actividad', blank=False, default=None)
+    # tipo = models.CharField(max_length=30, choices=(('Educación', 'EDUCACION'), ('Master Class', 'MASTER CLASS'), ('Proyección', 'PROYECCION')), default='EDUCACION')
+    texto = HTMLField(max_length=25500, blank=True)
+    # imagen = models.ImageField(blank=True, upload_to=upload_location)
+    imagen = models.ImageField(blank=True, upload_to='acts')
     tags = models.ManyToManyField(Tag, related_name='actividad_tags', blank=True)
-    galeria = models.ForeignKey(Galeria, blank=True, null=True)
-    imagen = models.FileField(blank=True, upload_to='license')
+    # galeria = models.ForeignKey(Galeria, blank=True, null=True)
 
-
-
-    def __str__(self):
-        return self.actividad
+    # def __str__(self):
+    #     return self.actividad
 
     class Meta:
-        ordering = ['actividad']
+        # ordering = ['actividad']
         verbose_name = 'Actividad'
         verbose_name_plural = 'Actividades'
 
 
 
-class Inauguracion(models.Model):
-    inauguracion = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.inauguracion
-
-    class Meta:
-        ordering = ['inauguracion']
-        verbose_name = 'Inauguración'
-        verbose_name_plural = 'Inauguraciones'
+# class Inauguracion(models.Model):
+#     inauguracion = models.CharField(max_length=50, unique=True)
+#
+#     def __str__(self):
+#         return self.inauguracion
+#
+#     class Meta:
+#         ordering = ['inauguracion']
+#         verbose_name = 'Inauguración'
+#         verbose_name_plural = 'Inauguraciones'
 

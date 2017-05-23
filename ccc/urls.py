@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+# from nucleo.admin import admin_site
+# from eventos.admin import admin_site
 
 # static for debug mode
 from django.conf import settings
@@ -28,11 +30,25 @@ from nucleo import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^tinymce/', include('tinymce.urls')),
 
-    # url(r'^admin/', admin.site.urls),
+    # url(r'^$', views.HomeView.as_view(), name='home'),
+    # url(r'^expos/$', views.IndexView.as_view(), name='index'),
+    # url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='expo'),
+
+
     url(r'^$', views.HomeView.as_view(), name='home'),
-    url(r'^expos/$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='expo'),
+    url(r'^exposiciones/$', views.ExpoListView.as_view(), name='exposiciones'),
+    url(r'^exposiciones/(?P<slug>[-\w]+)/$', views.ExpoDetailView.as_view(), name='exposicion'),
+    url(r'^exposiciones/archivo$', views.ArchivoExposListView.as_view(), name='archivo'),
+    url(r'^actividades/$', views.ActsListView.as_view(), name='actividades'),
+    url(r'^actividades/(?P<slug>[-\w]+)/$', views.ActsDetailView.as_view(), name='actividad'),
+    url(r'^actividades/archivo$', views.ArchivoActsListView.as_view(), name='archivo_de_actividades'),
+    url(r'^publicaciones/$', views.PublsListView.as_view(), name='publicaciones'),
+    #
+    url(r'^(?P<slug>[-\w]+)/$', views.ArticleDetailView.as_view(), name='articulo'),
+    # url(r'^acercade/$', views.ArticleView.as_view(), name='acercade'),
+    # url(r'^contacto/$', views.ArticleView.as_view(), name='contacto'),
 
 ]
 if settings.DEBUG:

@@ -1,38 +1,96 @@
+{% extends "full.html" %}
+{% load static %}
 
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCC - Home</title>
-    <link rel="stylesheet" href="assets/css/app.css">
-  </head>
-  <body>
 
-    
-    <div class="row">
+{% block header %}
+
+      <header class="row expanded">
+
+          <div class="owl-carousel owl-carousel-home owl-theme">
+          {% for expo in owlexpo %}
+            <div class="item"
+                 data-thumb=' <span>{{ expo.titulo }}</span>
+                 <small> {{ expo.subtitulo }} | <strong> {{ expo.lugar }}</strong> </small> ' >
+                <a href="exposiciones/{{ expo.slug }}">
+                    <figure><img src="{{ expo.imagen.url }}" alt="{{ expo.titulo }}" /></figure>
+                </a>
+            </div>
+
+          {% endfor %}
+          </div>
+
+      </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+    <div class="row news actividades-grid">
       <div class="large-12 columns">
-        <h1>Expos</h1>
+      <h4>Actividades</h4>
+      <hr>
+
+        <div class="row small-up-2 medium-up-2 large-up-3">
+
+          {% for acts in acts %}
+          <div class="column column-block">
+            <a href="actividades/{{ acts.slug }}">
+                <figure>
+                    <span class="label {{ acts.tipo.slug }}">{{ acts.tipo }}</span>
+                    <img src="{{ acts.imagen.url }}" class="" alt="{{ acts.titulo }}">
+                    <figcaption>
+                      <div>
+                        <span class="title">{{ acts.titulo }}</span>
+                        <span class="subtitle">{{ acts.subtitulo }}</span>
+                      </div>
+                      <div>
+                        <span>{{ acts.lugar }}</span>
+                        <br>
+                        <span><small>{{ acts.fecha_inicio|date:"F Y" }} {{ acts.fecha_fin|date:"F Y" }}</small></span>
+                      </div>
+                    </figcaption>
+                  </figure>
+            </a>
+          </div>
+
+          {% endfor %}
+
+        </div>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="large-12 columns">
-    
-        <h1>Exposiciones</h1>
-        <ul>
-        {% for expo in expo_list %}
-            <li>{{ expo.expo }} - {{ expo.autor }}</li>
-        {% empty %}
-            <li>No articles yet.</li>
-        {% endfor %}
-        </ul>
-    
-      </div>
-    </div>
-    
 
-    <script src="assets/js/app.js"></script>
-  </body>
-</html>
+    <section class="parallax-window" data-parallax="scroll" data-image-src="{% static "img/sys/parallax/001-centro-cultural-clavijero-ccc.jpg" %}">
+    </section>
+
+
+    <section class="home-videos">
+      <div class="row">
+        <div class="large-12 columns">
+          <h4>Videos</h4>
+          <hr>
+          <div class="owl-carousel owl-videos">
+            <div class="item-video">
+                <a class="owl-video" href="https://www.youtube.com/embed/ePLtxZ16Sxs"></a>
+            </div>
+            <div class="item-video">
+                <a class="owl-video" href="https://www.youtube.com/embed/jtkBprpFGu8"></a>
+            </div>
+            <div class="item-video">
+                <a class="owl-video" href="https://www.youtube.com/embed/UGtE8-ytY4k"></a>
+            </div>
+            <div class="item-video">
+                <a class="owl-video" href="https://www.youtube.com/embed/EiGyCFjx-5I"></a>
+            </div>
+            <div class="item-video">
+                <a class="owl-video" href="https://www.youtube.com/embed/aqVL8Dbn0ek"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock main %}
+
+

@@ -1,0 +1,54 @@
+{% extends "full.html" %}
+{% load static %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url('//andamiostudio.in/staticcc/sys/hero/hero-publs.jpg');">
+            <div class="medium-12 columns text-center">
+              <h2 class="title">Publicaciones</h2>
+              <h4 class="sub-title">productos editoriales</h4>
+            </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+
+    <div class="row article publicaciones" id="main-publicaciones">
+      <div class="medium-12 columns">
+        <h5>Publicaciones</h5>
+
+        <section id="publicaciones" class="row">
+           {% for publicacion in publs_list %}
+
+          <div class="medium-6 columns">
+            <a href="{{ publicacion.link }}" target="_blank">
+                <figure>
+                    <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo }}">
+                    <figcaption>
+                      <h5>{{ publicacion.titulo }}</h5>
+                      <p>{{ publicacion.subtitulo }}</p>
+                      <span>Abrir PDF en <em>Issuu.com</em></span>
+                      <i class="fa fa-external-link"></i>
+                    </figcaption>
+                  </figure>
+                </figure>
+            </a>
+          </div>
+         {% empty %}
+            <div class="medium-12 columns">
+               <h6>No hay publicaciones</h6>
+            </div>
+         {% endfor %}
+
+
+        </section>
+
+      </div>
+    </div>
+{% endblock main %}
+

@@ -1,0 +1,63 @@
+    {% load static %}
+    <footer id="footer">
+      <div class="row">
+        <div class="medium-4 columns text-center">
+          <a href="{% url 'home' %}" class="logo">
+            <img src="{% static "img/sys/ccc-logo-vert-white.png" %}" alt="CCC">
+          </a>
+          <br>
+{#          <div class="input-group">#}
+{#            <input class="input-group-field" type="text" placeholder="Inscríbete al newslatter ">#}
+{#            <div class="input-group-button">#}
+{#              <input type="submit" class="button" value="Enviar">#}
+{#            </div>#}
+{#          </div>#}
+        </div>
+        <div class="medium-4 columns">
+          <h5>Ubicación</h5>
+          <br>
+          <p>
+            Nigromante 79, Centro Histórico
+            <br>
+            CP 58000, Morelia, Michoacán, México
+            <br>
+            <i class="fa fa-phone"></i> +52 01 443 312 04 12
+          </p>
+          <ul class="menu">
+            <li><a href="http://facebook.com/centroculturalclavijero                "  target="_blank"><i class="fa fa-2x fa-facebook"></i></a></li>
+            <li><a href="http://twitter.com/ccclavijero                             "  target="_blank"><i class="fa fa-2x fa-twitter"></i></a></li>
+            <li><a href="http://instagram.com/clavijeromorelia                      "  target="_blank"><i class="fa fa-2x fa-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCS-QfocYuPer7Q3XCfUx5sA   "  target="_blank"><i class="fa fa-2x fa-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="medium-4 columns">
+          <h5>Mapa</h5>
+          <div class="map-ccc">
+            <a target="_blank" title="Ver en Google Maps" href="https://www.google.com.mx/maps/place/Centro+Cultural+Clavijero/@19.7033572,-101.196984,17z/data=!4m5!3m4!1s0x0:0x5f1aaaa6cf19e5d5!8m2!3d19.703698!4d-101.1954117?hl=en">
+              <figure>
+                <img src="{% static "img/sys/map-ccc.jpg" %}" alt="Mapa Centro Cultural Clavijero">
+              </figure>
+            </a>
+          </div>
+        </div>
+        <div class="medium-10 columns xlarge-8 medium-offset-1 xlarge-offset-2 end tira-de-logos text-center">
+          <hr>
+          <ul class="row small-up-2 medium-up-3 large-up-5 no-bullet">
+            <li class="columns"><img src="{% static "img/sys/footer-logos/1-secretaria-cultura-fedederal.png" %}"        alt="1-secretaria-cultura-fedederal"     ></li>
+            <li class="columns"><img src="{% static "img/sys/footer-logos/2-centenario-constitucion-1917.png" %}"        alt="2-centenario-constitucion-1917"     ></li>
+            <li class="columns"><img src="{% static "img/sys/footer-logos/3-contraloria-social.png" %}"                  alt="3-contraloria-social"               ></li>
+            <li class="columns"><img src="{% static "img/sys/footer-logos/4-secretaria-cultura-del-estado.png" %}"       alt="4-secretaria-cultura-del-estado"    ></li>
+            <li class="columns"><img src="{% static "img/sys/footer-logos/5-gobierno-del-estado-de-michoacan.png" %}"    alt="5-gobierno-del-estado-de-michoacan" ></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-12 columns">
+          <hr>
+          <ul class="menu text-center">
+            <li> <small><i class="fa fa-copyright"></i> Copyright 2017 CCC Todos los derechos reservados.</small></li>
+          </ul>
+        </div>
+      </div>
+    </footer>

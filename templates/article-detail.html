@@ -1,0 +1,64 @@
+{% extends "sidebar.html" %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url({{ articulo.hero.url }});">
+        <div class="medium-12 columns text-center">
+          <h2 class="title">{{ articulo.titulo }} </h2>
+          <h4 class="sub-title">{{ articulo.subtitulo }}</h4>
+        </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+    <section id="">
+        <p>
+        {% autoescape off %}
+            {{ articulo.texto }}
+        {% endautoescape %}
+        </p>
+    </section>
+
+    {% if articulo.galerias %}
+    <section id="galeria">
+      <h5>Galería</h5>
+      <div class="owl-carousel owl-gallery owl-theme" data-slider-id="1">
+        <div class="item">   <figure><img src="{{ articulo.galerias.imagen_01.url }}" alt="{{ articulo.titulo }} - {{ articulo.subtitulo }}" /></figure> </div>
+        <div class="item">   <figure><img src="{{ articulo.galerias.imagen_02.url }}" alt="{{ articulo.titulo }} - {{ articulo.subtitulo }}" /></figure> </div>
+        <div class="item">   <figure><img src="{{ articulo.galerias.imagen_03.url }}" alt="{{ articulo.titulo }} - {{ articulo.subtitulo }}" /></figure> </div>
+        <div class="item">   <figure><img src="{{ articulo.galerias.imagen_04.url }}" alt="{{ articulo.titulo }} - {{ articulo.subtitulo }}" /></figure> </div>
+      </div>
+
+    </section>
+    {% endif %}
+
+{% endblock main %}
+
+
+{#{% block sidebar %}#}
+{##}
+{#    <div class="medium-3 large-3 columns large-offset-1 sidebar-sticky-container" data-sticky-container>#}
+{#    <nav class="sticky" data-sticky data-top-anchor="main-article" data-btm-anchor="footer:[top]" data-margin-top="5" data-margin-bottom="10">#}
+{##}
+{#      <h5>Exposiciones actuales</h5>#}
+{#      <ul class="menu vertical sidebar">#}
+{#        {% for sidemenu in sidemenu %}#}
+{##}
+{#        <li><a href="expo/{{this.slug}}"><small>{{this.lugar}}</small> {{this.titulo}}</a></li>#}
+{#        {% endfor %}#}
+{#      </ul>#}
+{#      <hr>#}
+{#      <ul class="menu vertical sidebar">#}
+{#        <li><a href="../archivo.html">» Archivos de Exposiciones</a></li>#}
+{#      </ul>#}
+{#    </nav>#}
+{#  </div>#}
+{##}
+{##}
+{#{% endblock sidebar %}#}
+

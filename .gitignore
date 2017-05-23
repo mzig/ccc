@@ -1,3 +1,6 @@
 # ignore files
 
-etc/
+etc/server-bkup
+etc/styles
+etc/trash
+etc/sandbox

@@ -1,0 +1,94 @@
+{% load static %}
+    <div class="overnav">
+      <div class="left">
+        <span><strong>Horario:</strong> Martes a Domingo 10:00 a 18:00 hrs.</span>
+      </div>
+      <div class="right">
+        <ul class="menu">
+{#            <li><input type="search" placeholder="Exposición o actividad"></li>#}
+{#            <li><button type="button" class="tiny secondary button">Buscar</button></li>#}
+              <li><a href="http://facebook.com/centroculturalclavijero"               target="_blank"><i class="fa fa-facebook"></i>  </a></li>
+              <li><a href="http://twitter.com/ccclavijero"                            target="_blank"><i class="fa fa-twitter"></i>   </a></li>
+              <li><a href="http://instagram.com/clavijeromorelia"                     target="_blank"><i class="fa fa-instagram"></i> </a></li>
+              <li><a href="https://www.youtube.com/channel/UCS-QfocYuPer7Q3XCfUx5sA"  target="_blank"><i class="fa fa-youtube"></i>   </a></li>
+          </ul>
+
+      </div>
+    </div>
+
+
+
+<div data-sticky-container>
+
+    <div class="top-bar topbar-responsive" id="main-menu" data-sticky data-top-anchor="51" data-margin-top="0">
+    <div class="top-bar-title">
+      <span data-responsive-toggle="topbar-responsive" data-hide-for="large">
+          <button class="menu-icon" type="button" data-toggle></button>
+      </span>
+      <a href="{% url 'home' %}" class="topbar-responsive-logo logo">
+        <div class="logo-ccc-icon">
+          <img src="{% static "img/sys/ccc-logo.png" %}" alt="Centro Cultural Clavijero">
+        </div>
+        <div class="logo-ccc-type" data-interchange="[{% static "img/sys/logos_ccc_small.png" %}, small], [{% static "img/sys/logos_ccc_large.png" %}, xlarge]"></div>
+
+      </a>
+    </div>
+
+    <div id="topbar-responsive" class="topbar-responsive-links">
+    <div class="top-bar-right">
+
+    <ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown">
+    <li class="has-dropdown">
+    <a href="/visita"> Visita</a>
+    <ul class="menu vertical">
+    <li> <a href="/visita#info">Información al visitante</a> </li>
+    <li> <a href="/visita#horario">Horario</a> </li>
+    <li> <a href="/visita#ubicacion">Ubicación</a> </li>
+    <li> <a href="/visita#mapa">Mapa</a> </li>
+    <li> <a href="/visita#guiadas">Visitas guiadas</a> </li>
+    <li> <a href="/visita#serviciosocial">Servicio Social</a> </li>
+    </ul>
+    </li>
+    <li class="has-dropdown">
+    <a href="/acercade"> Acerca del museo</a>
+    <ul class="menu vertical">
+    <li> <a href="/acercade#historia">Historia del Centro Cultural Clavijero</a> </li>
+    <li> <a href="/acercade#espacios">Espacios</a> </li>
+    <li> <a href="/acercade#mision">Misión y Visión</a> </li>
+    <li> <a href="/acercade#palacio">Palacio Clavijero</a> </li>
+    <li> <a href="/acercade#planos">Planos</a> </li>
+    </ul>
+    </li>
+    <li class="has-dropdown">
+    <a href="{% url 'exposiciones' %}"> Exposiciones</a>
+    <ul class="menu vertical">
+    <li> <a href="{% url 'exposiciones' %}">Exposiciones Actuales</a> </li>
+    <li> <a href="{% url 'archivo' %}">Archivo de exposiciones</a> </li>
+    </ul>
+    </li>
+    <li class="has-dropdown">
+    <a href="{% url 'actividades' %}"> Actividades</a>
+    <ul class="menu vertical">
+    <li> <a href="{% url 'actividades' %}">Actividades actuales</a> </li>
+    <li> <a href="{% url 'archivo_de_actividades' %}">Archivo de actividades</a> </li>
+    <li> <a href="{% url 'publicaciones' %}">Publicaciones</a> </li>
+    </ul>
+    </li>
+    <li class="has-dropdown">
+    <a href="/contacto"> Contacto</a>
+    <ul class="menu vertical">
+    <li> <a href="/contacto#info">Información de contacto</a> </li>
+    <li> <a href="/contacto#solicitud">Solicitud de espacios</a> </li>
+    </ul>
+    </li>
+
+
+
+    </ul>
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>

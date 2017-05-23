@@ -1,0 +1,63 @@
+{% extends "full.html" %}
+{% load static %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url('//andamiostudio.in/staticcc/sys/hero/hero-acts.jpg');">
+            <div class="medium-12 columns text-center">
+              <h2 class="title">Actividades</h2>
+              <h4 class="sub-title">actuales y próximas</h4>
+            </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+
+<div class="row article actividades-grid news" id="main-actividades">
+  <div class="medium-12 columns">
+    <section id="actividades">
+      <h5>Actividades actuales y próximas</h5>
+
+      <div class="button-group filter-button-group text-center">
+        <button class="small primary button" data-filter="*"                  > <i class="fa fa-asterisk"></i> Todos</button>
+        {% for tipo in tipo_acts_list %}
+        <button class="small tagged button" data-filter=".{{ tipo.slug }}"       > {{ tipo.slug }}</button>
+        {% endfor %}
+      </div>
+
+      <div class="row small-up-2 medium-up-3 large-up-3 isotope-grid news">
+        {% for acts in acts_list %}
+        <div class="column column-block isotope-item {{ acts.tipo.slug }}">
+          <a href="{{ acts.slug }}">
+            <figure>
+                <span class="label {{ acts.tipo.slug }}">{{ acts.tipo }}</span>
+                <img src="{{ acts.imagen.url }}" class="" alt="{{ acts.titulo }}">
+                <figcaption>
+                  <div>
+                    <span class="title">{{ acts.titulo }}</span>
+                    <span class="subtitle">{{ acts.subtitulo }}</span>
+                  </div>
+                  <div>
+                    <span>{{ acts.lugar }}</span>
+                    <br>
+                    <span><small>{{ acts.fecha_inicio|date:"F Y" }} {{ acts.fecha_fin|date:"F Y" }}</small></span>
+                  </div>
+                </figcaption>
+              </figure>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+
+    </section>
+
+  </div>
+</div>
+{% endblock main %}
+

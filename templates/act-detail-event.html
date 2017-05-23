@@ -1,0 +1,53 @@
+{% extends "sidebar.html" %}
+{% load embed_video_tags %}
+
+
+{% block main %}
+    <section id="">
+        <h5>{{ actividad.titulo }}</h5>
+        <p>
+            {{ actividad.desc_corta }}
+        </p>
+        <span class="label {{ actividad.tipo }}">{{ actividad.tipo }}</span>
+        <figure>
+            <img src="{{ actividad.imagen.url }}" alt="">
+        </figure>
+
+        <br>
+        <p>
+        {% autoescape off %}
+            {{ actividad.texto|linebreaksbr }}
+        {% endautoescape %}
+        </p>
+        <br>
+        {% video actividad.video '100% x 600' %}
+    </section>
+
+
+
+{% endblock main %}
+
+
+{% block sidebar %}
+
+    <div class="medium-3 large-3 columns large-offset-1 sidebar-sticky-container" data-sticky-container>
+    <nav class="sticky" data-sticky data-top-anchor="main-article" data-btm-anchor="footer:[top]" data-margin-top="5" data-margin-bottom="10">
+
+      <h5>Actividades actuales</h5>
+      <ul class="menu vertical sidebar">
+        {% for acts in current_acts_list %}
+
+        <li><a href="../{{ actividad.slug }}"><small>{{ actividad.lugar }}</small> {{ actividad.titulo }}</a></li>
+        {% endfor %}
+      </ul>
+      <hr>
+      <ul class="menu vertical sidebar">
+        <li><a href="{% url 'actividades' %}"> Todas las actividades</a></li>
+{#        <li><a href="../archivo.html">» Archivo de actividades</a></li>#}
+      </ul>
+    </nav>
+  </div>
+
+
+{% endblock sidebar %}
+

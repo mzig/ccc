@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+{% endblock header %}
+
+
+
+{% block body %}
+
+  <div class="row article with-sidebar" id="main-article">
+      <div class="medium-9 large-7 columns">
+
+          {% block main %}
+
+          {% endblock main %}
+
+      </div>
+          {% block sidebar %}
+
+          {% endblock sidebar %}
+
+  </div>
+
+{% endblock body %}
+

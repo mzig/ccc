@@ -1,0 +1,121 @@
+{% extends "sidebar.html" %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url({{ expo.imagen.url }});">
+        <div class="medium-12 columns text-center">
+          <h2 class="title">{{ expo.titulo }} </h2>
+          <h4 class="sub-title">{{ expo.subtitulo }}</h4>
+          <p class="text-line">
+            {{ expo.fecha_inicio|date:"F Y" }} - {{ expo.fecha_fin|date:"F Y" }} |
+              <span> <small>{{ expo.lugar }}</small></span></p>
+
+            {% if expo.tags %}
+            <br>
+
+                {% for tag in tags_list %}
+
+                <span class="primary label">{{ expo.tag}}</span>
+
+                {% endfor %}
+
+            {% else %}
+            {% endif %}
+        </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+    <section id="">
+        <p>
+        {% autoescape off %}
+            {{ expo.texto_curatorial|linebreaksbr }}
+        {% endautoescape %}
+        </p>
+    </section>
+
+    {% if expo.galeria %}
+    <section id="galeria">
+      <h5>Galería</h5>
+      <div class="owl-carousel owl-gallery owl-theme" data-slider-id="1">
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_01.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_02.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_03.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+          {% if expo.galeria.imagen_04 %}%}
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_04.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+          {% endif %}
+          {% if expo.galeria.imagen_05 %}%}
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_05.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+          {% endif %}
+          {% if expo.galeria.imagen_06 %}
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_06.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+          {% endif %}
+          {% if expo.galeria.imagen_07 %}
+        <div class="item">   <figure><img src="{{ expo.galeria.imagen_07.url }}" alt="{{ expo.titulo }} - {{ expo.subtitulo }}" /></figure> </div>
+          {% endif %}
+      </div>
+
+    </section>
+    {% endif %}
+
+    {% if expo.estadisticas %}
+    <section>
+      <div class="row callout primary stats">
+        <h6 class="medium-12 columns center">Estadísticas:</h6>
+        {% if expo.estadisticas.estadistic1 %}
+            <div class="medium-3 columns text-center center"><span>{{ expo.estadisticas.estadistica1.numero }}</span><span> {{ expo.estadisticas.estadistica1.nombre }}</span></div>
+        {% endif %}
+
+        {% if expo.estadisticas.estadistica2 %}
+            <div class="medium-3 columns text-center center"><span>{{ expo.estadisticas.estadistica2.numero }}</span><span> {{ expo.estadisticas.estadistica2.nombre }}</span></div>
+        {% endif %}
+
+        {% if expo.estadisticas.estadistica3 %}
+            <div class="medium-3 columns text-center center"><span>{{ expo.estadisticas.estadistica3.numero }}</span><span> {{ expo.estadisticas.estadistica3.nombre }}</span></div>
+        {% endif %}
+        {% if expo.estadisticas.estadistica4 %}
+            <div class="medium-3 columns text-center center"><span>{{ expo.estadisticas.estadistica4.numero }}</span><span> {{ expo.estadisticas.estadistica4.nombre }}</span></div>
+        {% endif %}
+
+      </div>
+    </section>
+    {% endif %}
+
+{% endblock main %}
+
+
+{% block sidebar %}
+
+    <div class="medium-3 large-3 columns large-offset-1 sidebar-sticky-container" data-sticky-container>
+    <nav class="sticky" data-sticky data-top-anchor="main-article" data-btm-anchor="footer:[top]" data-margin-top="5" data-margin-bottom="10">
+
+      <h5>Exposiciones actuales</h5>
+      <ul class="menu vertical sidebar">
+        {% for expo in current_expo_list %}
+
+        <li><a href="../{{expo.slug}}"><small>{{expo.lugar}}</small> {{expo.titulo}}</a></li>
+        {% endfor %}
+      </ul>
+      <hr>
+      <ul class="menu vertical sidebar">
+        <li><a href="{% url 'archivo' %}">» Archivo de Exposiciones</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+{#    <h4>Expos actuales:</h4>#}
+{#    <ul class="menu vertical sidebar">#}
+{#      <li><a href="">Magali Lara</a></li>#}
+{#      <li><a href="">Buñuel Mexicano</a></li>#}
+{#      <li><a href="">Curiot</a></li>#}
+{#      <li><a href="">Jacki Irvine</a></li>#}
+{#      <li><a href="">Arte Cisoria</a></li>#}
+{#    </ul>#}
+{% endblock sidebar %}
+

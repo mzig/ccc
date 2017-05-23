@@ -1,0 +1,74 @@
+{% extends "sidebar.html" %}
+{% load static %}
+
+{% block header %}
+
+
+    <header class="hero row expanded" style="background-image:url('//andamiostudio.in/staticcc/sys/hero/hero-expos-archivo.jpg');">
+            <div class="medium-12 columns text-center">
+              <h2 class="title">Archivo de Exposiciones</h2>
+              <h4 class="sub-title">acervo histórico</h4>
+            </div>
+    </header>
+
+
+{% endblock header %}
+
+
+
+{% block main %}
+
+        <section class="archivo-expos-grid" id="">
+          <h3>2017</h3>
+          <hr>
+          {% for expo in archive_expo_list %}
+          <div class="media-object">
+            <div class="media-object-section">
+              <img src="{{ expo.imagen.url }}">
+            </div>
+            <div class="media-object-section">
+              <h4>{{ expo.titulo }}</h4>
+              <h6>{{ expo.subtitulo }}</h6>
+              <p><small>Se exhibió en: </small>{{ expo.lugar }}</p>
+              <span><small>permancencia: {{ expo.fecha_inicio|date:"F Y" }} - {{ expo.fecha_fin|date:"F Y" }}</small></span>
+              <br>
+              <a href="{{ expo.slug }}" class="small secondary button">Ver exposición</a>
+            </div>
+          </div>
+            {% endfor %}
+
+          <!-- pagination WIP -->
+          <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+            <li class="disabled">Anterior <span class="show-for-sr">página</span></li>
+            <li class="current"><span class="show-for-sr">Página actual:</span> 1</li>
+            <li><a href="#0" aria-label="Page 2">2</a></li>
+            <li class="ellipsis" aria-hidden="true"></li>
+            <li><a href="#0" aria-label="Page 12">5</a></li>
+            <li><a href="#0" aria-label="Page 13">6</a></li>
+            <li><a href="#0" aria-label="Next page">Siguiente <span class="show-for-sr">página</span></a></li>
+          </ul>
+
+        </section>
+
+
+{% endblock main %}
+
+
+{% block sidebar %}
+      <div class="medium-3 large-3 columns large-offset-1 sidebar-sticky-container" data-sticky-container>
+        <nav class="sticky" data-sticky data-top-anchor="main-article" data-btm-anchor="footer:[top]" data-margin-top="5" data-margin-bottom="10">
+
+          <h5>Exposiciones actuales</h5>
+          <ul class="menu vertical sidebar">
+            {% for expo in current_expo_list %}
+
+            <li><a href="expo/{{expo.slug}}"><small>{{expo.lugar}}</small> {{expo.titulo}}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+{% endblock sidebar %}
+
+
