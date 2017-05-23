@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 from tinymce.models import HTMLField
+from embed_video.fields import EmbedVideoField
 
 from PIL import Image
 
@@ -161,3 +162,13 @@ class Publicacion(models.Model):
         verbose_name = 'Publicación'
         verbose_name_plural = 'Publicaciones'
 
+
+class Video(models.Model):
+    link = EmbedVideoField(max_length=255, blank=False)
+
+    def __str__(self):
+        return self.link
+
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'

@@ -64,28 +64,20 @@
     <section class="parallax-window" data-parallax="scroll" data-image-src="{% static "img/sys/parallax/001-centro-cultural-clavijero-ccc.jpg" %}">
     </section>
 
-
+{% load embed_video_tags %}
     <section class="home-videos">
       <div class="row">
         <div class="large-12 columns">
           <h4>Videos</h4>
           <hr>
           <div class="owl-carousel owl-videos">
+            {% for videos in videos %}
             <div class="item-video">
-                <a class="owl-video" href="https://www.youtube.com/embed/ePLtxZ16Sxs"></a>
+                {% video videos as owl_video %}
+                    <a class="owl-video" href="{{ owl_video.url }}"></a>
+                {% endvideo %}
             </div>
-            <div class="item-video">
-                <a class="owl-video" href="https://www.youtube.com/embed/jtkBprpFGu8"></a>
-            </div>
-            <div class="item-video">
-                <a class="owl-video" href="https://www.youtube.com/embed/UGtE8-ytY4k"></a>
-            </div>
-            <div class="item-video">
-                <a class="owl-video" href="https://www.youtube.com/embed/EiGyCFjx-5I"></a>
-            </div>
-            <div class="item-video">
-                <a class="owl-video" href="https://www.youtube.com/embed/aqVL8Dbn0ek"></a>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>

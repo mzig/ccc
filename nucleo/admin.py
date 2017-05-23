@@ -1,9 +1,9 @@
 from django.contrib import admin
 # from django.contrib.admin import AdminSite
 # Register your models here.
+from embed_video.admin import AdminVideoMixin
 
-
-from . models import Tag, Lugar, Articulo, Imagen, Galeria, TipoActividad, Publicacion, Incrustado
+from . models import Tag, Lugar, Articulo, Imagen, Galeria, TipoActividad, Publicacion, Video, Incrustado
 
 # class CCCAdminSite(AdminSite):
 #     site_header = 'Administración CCC'
@@ -59,6 +59,13 @@ class PublicacionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Publicacion, PublicacionAdmin)
+
+
+class VideoAdmin(AdminVideoMixin, admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Video, VideoAdmin)
 
 
 # admin.site.register(Incrustado)

@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.views.generic.base import TemplateView
 from django.views import generic
 from eventos.models import Expo, Actividad, Evento
-from nucleo.models import Tag, Articulo, TipoActividad, Publicacion
+from nucleo.models import Tag, Articulo, TipoActividad, Publicacion, Video
 from django.template.context_processors import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
@@ -32,12 +32,13 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         expos = Expo.objects.order_by("-fecha_inicio")[:6]
         acts = Actividad.objects.filter(fecha_fin__gt=timezone.now()).order_by("-fecha_fin")[:6]
+        videos = Video.objects.all()[:12]
         items = list(expos) + list(acts)
         items.sort(key=lambda i: i.fecha_inicio, reverse=True)
         owlexpo = Expo.objects.filter(carrusel=True).order_by('-fecha_inicio')[:6]
 
-        return {"owlexpo": owlexpo, "acts": acts}
-        # return {}
+        return {"owlexpo": owlexpo, "acts": acts, "videos": videos}
+
 
     # def get_queryset(self):
     #     return Expo.objects.all()
